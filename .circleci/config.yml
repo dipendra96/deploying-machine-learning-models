@@ -112,7 +112,7 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+                  git push https://heroku:f2379fa4-7a2b-49ba-84a7-0023581a354d@git.heroku.com/mlengg.git herokucontainer
   
   section_11_build_and_push_to_heroku_docker:
     <<: *defaults
@@ -120,7 +120,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - run: docker login --username=$HEROKU_EMAIL --password=$HEROKU_API_KEY registry.heroku.com
+      - run: docker login --username=dipendrasinghmal@gmail.com --password=f2379fa4-7a2b-49ba-84a7-0023581a354d registry.heroku.com
       - run:
           name: Setup Heroku CLI
           command: |
@@ -132,7 +132,7 @@ jobs:
       - run: 
           name: Release to Heroku
           command: |
-            heroku container:release web --app $HEROKU_APP_NAME
+            heroku container:release web --app mlengg
 
 workflows:
   version: 2
@@ -149,18 +149,18 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - herokucontainer
       # - section_10_deploy_to_heroku:
       #     requires:
       #       - train_and_upload_regression_model
       #     filters:
       #       branches:
       #         only:
-      #           - master
+      #           - herokucontainer
       - section_11_build_and_push_to_heroku_docker:
           requires:
             - train_and_upload_regression_model
           filters:
             branches:
               only:
-                - master
+                - herokucontainer
