@@ -13,13 +13,13 @@ prepare_venv: &prepare_venv
       source venv/bin/activate
       pip install --upgrade pip
 
-fetch_data: &fetch_data
-  run:
-    name: Set script permissions and fetch data
-    command: |
-      source venv/bin/activate
-      chmod +x ./scripts/fetch_kaggle_dataset.sh
-      ./scripts/fetch_kaggle_dataset.sh
+      #fetch_data: &fetch_data
+#run:
+          #name: Set script permissions and fetch data
+    # command: |
+            #source venv/bin/activate
+      #chmod +x ./scripts/fetch_kaggle_dataset.sh
+      #      ./scripts/fetch_kaggle_dataset.sh
 
 jobs:
   test_regression_model:
